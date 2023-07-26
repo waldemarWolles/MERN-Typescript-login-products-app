@@ -1,14 +1,21 @@
 import React from 'react'
-import { Login, Register } from '../features/authentication/components'
+import { AuthTabs } from '../features/authentication/components'
+import { Box, styled } from '@mui/material'
 
-type Props = {}
-const token = ''
-const AuthPage: React.FC<Props> = () => {
+const StyledBox = styled(Box)({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+
+  height: '100vh',
+})
+
+const AuthPage: React.FC = () => {
   return (
-    <div>
+    <StyledBox>
       <h1>AuthPage</h1>
-      {token ? <Login /> : <Register />}
-    </div>
+      <AuthTabs />
+    </StyledBox>
   )
 }
 

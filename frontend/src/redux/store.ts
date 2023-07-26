@@ -1,16 +1,13 @@
-// store.ts
 import { configureStore } from '@reduxjs/toolkit'
 import { combineReducers } from 'redux'
-// import counterReducer from './reducers/counterSlice';
+import authReducer from '../features/authentication/redux/slices/authSlice'
 
 const rootReducer = combineReducers({
-  //   counter: counterReducer,
-  // Add more reducers here if you have additional slices
+  auth: authReducer,
 })
 
 const store = configureStore({
   reducer: rootReducer,
-  // Additional middleware, enhancers, and configuration can be added here
 })
 
 export type RootState = ReturnType<typeof rootReducer>

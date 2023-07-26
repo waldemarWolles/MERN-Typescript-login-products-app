@@ -1,13 +1,17 @@
 import React, { useEffect } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { NavigateFunction, Route, Routes, redirect, useNavigate } from 'react-router-dom'
 import MainLayout from './layouts/MainLayout'
 import HomePage from './pages/HomePage'
 import AuthPage from './pages/AuthPage'
 import { ProductType } from './features/products-store/types/product'
 import ProductDetailsPage from './pages/ProductDetailsPage'
 import Header from './components/Header'
+import { Selector, useDispatch, useSelector } from 'react-redux'
+import { selectIsAuth, selectUserData } from './features/authentication/redux/selectors/authSelectors'
+import { AppDispatch } from './redux/store'
+import { fetchUserThunk } from './features/authentication/redux/thunks/authThunks'
+import { User } from './features/authentication/types/auth'
 
-const isAuth = false
 const products: ProductType[] = [
   {
     id: 1,
@@ -36,11 +40,18 @@ const products: ProductType[] = [
 ]
 
 const App: React.FC = () => {
-  // useEffect(() => {
+  const token = window.localStorage.getItem('token')
+  const dispatch: AppDispatch = useDispatch()
+  const navigate: NavigateFunction = useNavigate()
 
-  //   isAuth && call to fetch Products
-
-  // }, [isAuth])
+  useEffect(() => {
+    if (!token) {
+      navigate('/auth-page')
+    } else {
+      dispatch(fetchUserThunk())
+      navigate('/')
+    }
+  }, [])
 
   return (
     <>
@@ -49,13 +60,9 @@ const App: React.FC = () => {
         <Route
           path="/"
           element={
-            isAuth ? (
-              <MainLayout>
-                <HomePage products={products} />
-              </MainLayout>
-            ) : (
-              <AuthPage />
-            )
+            <MainLayout>
+              <HomePage products={products} />
+            </MainLayout>
           }
         />
         <Route
@@ -66,6 +73,7 @@ const App: React.FC = () => {
             </MainLayout>
           }
         />
+        <Route path="/auth-page" element={<AuthPage />} />
       </Routes>
     </>
   )
