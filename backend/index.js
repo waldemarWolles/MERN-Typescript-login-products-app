@@ -9,7 +9,7 @@ import { checkAuth, handleValidationErrors } from './utils/index.js'
 
 mongoose
   .connect('mongodb+srv://test-username:0000@inforce-test-task-mern1.6wwzbez.mongodb.net/')
-  .then(() => console.log('DB work fine!'))
+  .then(() => console.log('DB works fine!'))
   .catch((error) => console.log(error + 'error'))
 
 const app = express()

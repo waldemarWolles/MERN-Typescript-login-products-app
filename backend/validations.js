@@ -3,8 +3,8 @@ import { body } from 'express-validator'
 export const registerValidation = [
   body('email', 'Email is Wrong').isEmail(),
   body('password').isLength({ min: 5 }),
-  body('firstName').isLength({ min: 3 }).isString(),
-  body('lastName').isLength({ min: 3 }).isString(),
+  body('firstName').isLength({ min: 2 }).isString(),
+  body('lastName').isLength({ min: 2 }).isString(),
   body('avatarUrl').optional().isString(),
 ]
 

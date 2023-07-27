@@ -50,9 +50,7 @@ export const update = async (req, res) => {
       })
     }
 
-    res.json({
-      success: true,
-    })
+    res.json(updatedProduct)
   } catch (error) {
     console.log(error)
     res.status(500).json({
