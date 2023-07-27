@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { styled } from '@mui/material/styles'
-import { AppBar, Toolbar, IconButton, Typography, Button } from '@mui/material'
+import { AppBar, Toolbar, IconButton, Typography, Button, Icon, Avatar } from '@mui/material'
 import HomeIcon from '@mui/icons-material/Home'
 import ExitToAppIcon from '@mui/icons-material/ExitToApp'
 import { AppDispatch } from '../redux/store'
@@ -38,6 +38,11 @@ const StyledUserName = styled(Typography)({
   marginLeft: '20px',
 })
 
+const StyledAvatar = styled(Avatar)({
+  marginLeft: '20px',
+  marginRight: '20px',
+})
+
 const Header: React.FC = () => {
   const dispatch: AppDispatch = useDispatch()
   const navigate = useNavigate()
@@ -62,8 +67,10 @@ const Header: React.FC = () => {
 
         {isAuth && (
           <Button color="inherit" onClick={handleLogout}>
+            <StyledUserName>{user?.firstName}</StyledUserName>
+            <StyledAvatar src={user?.avatarUrl} alt={user?.firstName} />
             <ExitToAppIcon />
-            Log out <StyledUserName>{user?.firstName}</StyledUserName>
+            Log out
           </Button>
         )}
       </StyledToolbar>

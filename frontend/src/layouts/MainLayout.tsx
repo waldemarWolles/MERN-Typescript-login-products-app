@@ -8,7 +8,6 @@ type Props = {
 const MainLayout: React.FC<Props> = ({ children, className }) => {
   return (
     <div>
-      {/* <Header /> */} Header
       <main className={className}>{children}</main>
     </div>
   )
