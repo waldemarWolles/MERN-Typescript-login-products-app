@@ -5,7 +5,7 @@ import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField } 
 import { useForm } from 'react-hook-form'
 import { AppDispatch } from '../../../redux/store'
 import { useDispatch } from 'react-redux'
-import { ProductFormModalProps, ProductFormType } from '../types/product'
+import { ProductFormModalProps, ProductFormType, ProductType } from '../types/product'
 import { createProductThunk, updateProductThunk } from '../redux/redux/thunks/productsThunks'
 import { useNavigate, useParams } from 'react-router-dom'
 
@@ -66,7 +66,7 @@ const ProductFormModal: React.FC<ProductFormModalProps> = ({ formType, initialVa
       formType === 'create'
         ? await dispatch(createProductThunk(values))
         : await (productId && dispatch(updateProductThunk({ payload: values, productId })))
-    if (!data.payload) {
+    if (!data?.payload) {
       return alert(`Failed to ${formType} product!`)
     }
     onClose()

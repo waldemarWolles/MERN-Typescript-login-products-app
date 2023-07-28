@@ -1,4 +1,4 @@
-import { fetchOneProductThunk, updateProductThunk } from './../thunks/productsThunks'
+import { deleteProductThunk, fetchOneProductThunk, updateProductThunk } from './../thunks/productsThunks'
 import { createSlice } from '@reduxjs/toolkit'
 import { createProductThunk, fetchProducts } from '../thunks/productsThunks'
 import { ProductType } from '../../../types/product'
@@ -59,6 +59,18 @@ const productsSlice = createSlice({
         state.status = 'fulfilled'
       })
       .addCase(fetchOneProductThunk.rejected, (state) => {
+        state.status = 'error'
+      })
+      .addCase(deleteProductThunk.pending, (state, action) => {
+        console.log(action?.meta?.arg)
+
+        state.items = state.items && state.items?.filter((item) => item._id !== action?.meta?.arg)
+        state.status = 'pending'
+      })
+      .addCase(deleteProductThunk.fulfilled, (state, action) => {
+        state.status = 'fulfilled'
+      })
+      .addCase(deleteProductThunk.rejected, (state) => {
         state.status = 'error'
       })
   },

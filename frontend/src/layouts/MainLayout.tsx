@@ -1,15 +1,14 @@
 import { ReactNode } from 'react'
 
 type Props = {
-  className?: string
   children: ReactNode
 }
 
-const MainLayout: React.FC<Props> = ({ children, className }) => {
+const MainLayout: React.FC<Props> = ({ children }) => {
   return (
-    <div>
-      <main className={className}>{children}</main>
-    </div>
+    <>
+      <main>{children}</main>
+    </>
   )
 }
 

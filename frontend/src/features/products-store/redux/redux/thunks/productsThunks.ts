@@ -1,4 +1,4 @@
-import { createProductAPI, fetchOneProductAPI, fetchProductsAPI, updateProductAPI } from '../../../api/products'
+import { createProductAPI, deleteProductAPI, fetchOneProductAPI, fetchProductsAPI, updateProductAPI } from '../../../api/products'
 import { ProductFormType, ProductType } from '../../../types/product'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
@@ -23,4 +23,9 @@ export const updateProductThunk = createAsyncThunk<ProductType, { payload: Produ
 export const fetchOneProductThunk = createAsyncThunk<ProductType, string>('products/fetchOneProduct', async (id: string) => {
   const product = await fetchOneProductAPI(id)
   return product
+})
+
+export const deleteProductThunk = createAsyncThunk<{ success: boolean }, string>('products/deleteProduct', async (id: string) => {
+  const result = await deleteProductAPI(id)
+  return result
 })

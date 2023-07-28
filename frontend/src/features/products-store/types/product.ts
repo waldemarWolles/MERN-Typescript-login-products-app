@@ -38,3 +38,9 @@ export type ProductFormModalProps = {
   open: boolean
   onClose: () => void
 }
+
+export type CommentFormType = {
+  comment: string
+}
+
+export type SortProductsByType = 'name' | 'count'

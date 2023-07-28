@@ -34,14 +34,7 @@ const App: React.FC = () => {
             </MainLayout>
           }
         />
-        <Route
-          path="/products/:productId"
-          element={
-            <MainLayout>
-              <ProductDetailsPage />
-            </MainLayout>
-          }
-        />
+        <Route path="/products/:productId" element={<ProductDetailsPage />} />
         <Route path="/auth-page" element={<AuthPage />} />
       </Routes>
     </>

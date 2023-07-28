@@ -20,3 +20,8 @@ export const fetchOneProductAPI = async (id: string): Promise<ProductType> => {
   const response = await axiosInstance.get<ProductType>(`/products/${id}`)
   return response.data
 }
+
+export const deleteProductAPI = async (id: string): Promise<{ success: boolean }> => {
+  const response = await axiosInstance.delete<{ success: boolean }>(`/products/${id}`)
+  return response.data
+}
